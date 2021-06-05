@@ -9,4 +9,7 @@ class Userguru extends Model
 {
     use HasFactory;
     protected $table = "User";
+    protected $fillable = [
+        'username', 'password'
+    ];
 }

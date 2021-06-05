@@ -15,8 +15,8 @@ class Kelas extends Migration
     {
         Schema::create('kelas', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_siswa',11);
-            $table->integer('id_guru',11);
+            $table->integer('id_siswa');
+            $table->integer('id_guru');
             $table->timestamps();
         });
     }

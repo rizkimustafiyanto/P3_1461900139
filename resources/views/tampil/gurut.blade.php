@@ -43,10 +43,15 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">DataTable Guru</h3>
+            <h3 class="card-title">Data Table Guru</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            @if ($message = Session::get('Success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+            @endif
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
@@ -64,18 +69,24 @@
                   <td>{{$gr->nama}}</td>
                   <td>{{$gr->mengajar}}</td>
                   <td>
-                    <a href="#" class="btn btn-sm btn-info">Edit</a>
-                    |
-                    <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                    <form action="{{route('guru.destroy',$gr->id)}}" method="POST">
+ 
+                      <a class="btn btn-info btn-sm" href="{{route('guru.show',$gr->id)}}">Show</a>
+   
+                      <a class="btn btn-primary btn-sm" href="{{ route('guru.edit',$gr->id) }}">Edit</a>
+   
+                      @csrf
+                      @method('DELETE')
+   
+                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                  </form>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
               <tfoot>
               <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Mengajar</th>
+                <th colspan="3" style="text-align: center">Tombol tambah data</th>
                 <th><a href="{{route('guru.create')}}" class="btn btn-sm btn-info">Tambah</a></th>
               </tr>
               </tfoot>

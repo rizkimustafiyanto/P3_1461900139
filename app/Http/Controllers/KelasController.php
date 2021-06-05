@@ -20,7 +20,7 @@ class KelasController extends Controller
         ->leftjoin('siswa', 'kelas.id_siswa', '=', 'siswa.id')
         ->select('kelas.*', 'siswa.nama as namas', 'guru.nama as namag')
         ->get();
-        return view('tampil.kelast' , ['jadwalkelas' => $data]);
+        return view('tampil.kelast' , ['kelas' => $data]);
     }
 
     /**
@@ -41,16 +41,26 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_siswa' => 'required',
+            'id_guru' => 'required',
+        ]);
+
+        DB::table('kelas')->insert([
+            'id_siswa' => $request->id_siswa,
+            'id_guru' => $request->id_guru
+        ]);
+        // alihkan halaman ke halaman guru
+        return redirect()->route('kelas.index')->with('Success','Data Kelas Berhasil Ditambah');;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Kelas $kelas)
     {
         //
     }
@@ -58,34 +68,46 @@ class KelasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kelas $kelas)
     {
-        //
+        return view('edita.editkelas', compact('kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kelas $kelas)
     {
-        //
+        $request->validate([
+            'id_siswa' => 'required',   
+            'id_guru' => 'required',
+        ]);
+
+        $kelas->update([
+            'id_siswa' => $request->id_siswa,
+            'id_guru' => $request->id_guru
+        ]);
+
+        // alihkan halaman ke halaman guru
+        return redirect()->route('kelas.index')->with('Success','Data Kelas Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kelas $kelas)
     {
-        //
+        $kelas->delete();
+        return redirect()->route('kelas.index')->with('Success','Data Kelas Berhasil Dihapus');
     }
 }

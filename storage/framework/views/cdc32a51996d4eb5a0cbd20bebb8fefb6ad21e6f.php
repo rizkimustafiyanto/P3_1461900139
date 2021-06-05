@@ -27,7 +27,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create Kelas</li>
+              <li class="breadcrumb-item active">Create Guru</li>
             </ol>
           </div>
         </div>
@@ -43,21 +43,21 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Data Kelas<small> Validation Input</small></h3>
+                <h3 class="card-title">Create Data Guru<small> Validation Input</small></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="POST" action="<?php echo e(route('kelas.store')); ?>">
+              <form id="quickForm" method="POST" action="<?php echo e(route('guru.store')); ?>">
                 <?php echo e(csrf_field()); ?>
 
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputnama1">Kode Siswa</label>
-                    <input type="text" name="id_siswa" class="form-control" id="exampleInputnama1" placeholder="Masukkan nama anda">
+                    <label for="exampleInputnama1">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="exampleInputnama1" placeholder="Masukkan nama anda">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputmengajar1">Kode Guru</label>
-                    <input type="Text" name="id_guru" class="form-control" id="exampleInputmengajar1" placeholder="Bagian Matakuliah">
+                    <label for="exampleInputmengajar1">Mengajar</label>
+                    <input type="Text" name="mengajar" class="form-control" id="exampleInputmengajar1" placeholder="Bagian Matakuliah">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
@@ -169,4 +169,4 @@
   });
   </script>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/form/newkelas.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/form/newguru.blade.php ENDPATH**/ ?>

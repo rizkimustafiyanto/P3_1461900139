@@ -22,12 +22,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Kelas</h1>
+            <h1>Data User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Kelas</li>
+              <li class="breadcrumb-item active">User</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -35,68 +35,64 @@
     </div>
     <!-- /.content-header -->
 
-     <!-- Main content -->
-     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable Kelas</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama Siswa</th>
-                    <th>Nama Pengajar</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php $no=1; ?>
-                    <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jkl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr>
-                      <td><?php echo e($no++); ?></td>
-                      <td><?php echo e($jkl->namas); ?></td>
-                      <td>Bpk/Ibu <?php echo e($jkl->namag); ?></td>
-                      <td>
-                        <form action="<?php echo e(route('kelas.destroy',$jkl->id)); ?>" method="POST">
- 
-                          <a class="btn btn-info btn-sm" href="<?php echo e(route('kelas.show',$jkl->id)); ?>">Show</a>
-       
-                          <a class="btn btn-primary btn-sm" href="<?php echo e(route('kelas.edit',$jkl->id)); ?>">Edit</a>
-       
-                          <?php echo csrf_field(); ?>
-                          <?php echo method_field('DELETE'); ?>
-       
-                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                      </form>
-                      </td>
-                    </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th colspan="3" style="text-align: center">Tombol tambah data</th>
-                    <th><a href="<?php echo e(route('kelas.create')); ?>" class="btn btn-sm btn-info">Tambah</a></th>
-                  </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <!-- /.card -->
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">DataTable User</h3>
           </div>
-          <!-- /.col -->
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php $no=1; ?>
+                  <?php $__currentLoopData = $userguru; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ug): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <tr>
+                    <td><?php echo e($no++); ?></td>
+                    <td><?php echo e($ug->nama); ?></td>
+                    <td><?php echo e($ug->username); ?></td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-info">Edit</a>
+                      |
+                      <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                    </td>
+                  </tr>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </tbody>
+              <tfoot>
+              <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th><a href="<?php echo e(route('user.create')); ?>" class="btn btn-sm btn-info">Tambah</a></th>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
         </div>
-        <!-- /.row -->
+        <!-- /.card -->
+        <!-- /.card -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
     <!-- /.content -->
     <!-- /.content -->
   </div>
@@ -137,5 +133,4 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src=<?php echo e(asset("administrator/dist/js/pages/dashboard2.js")); ?>></script>
 </body>
-</html>
-<?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/tampil/kelast.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/tampil/user.blade.php ENDPATH**/ ?>
