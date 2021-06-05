@@ -57,25 +57,31 @@
                   </thead>
                   <tbody>
                     <?php $no=1; ?>
-                    @foreach ($jadwalkelas as $jkl)
+                    @foreach ($kelas as $jkl)
                     <tr>
                       <td>{{$no++}}</td>
                       <td>{{$jkl->namas}}</td>
                       <td>Bpk/Ibu {{$jkl->namag}}</td>
                       <td>
-                        <a href="kelas.edit" class="btn btn-sm btn-danger">Edit</a>
-                        |
-                        <a href="#" class="btn btn-sm btn-info">Hapus</a>
+                        <form action="{{route('kelas.destroy',$jkl->id)}}" method="POST">
+ 
+                          <a class="btn btn-info btn-sm" href="{{route('kelas.show',$jkl->id)}}">Show</a>
+       
+                          <a class="btn btn-primary btn-sm" href="{{ route('kelas.edit',$jkl->id) }}">Edit</a>
+       
+                          @csrf
+                          @method('DELETE')
+       
+                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                      </form>
                       </td>
                     </tr>
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>No</th>
-                    <th>Nama Siswa</th>
-                    <th>Nama Pengajar</th>
-                    <th><a href="{{route('kelas.create')}}" class="btn btn-sm btn-danger">Tambah</a></th>
+                    <th colspan="3" style="text-align: center">Tombol tambah data</th>
+                    <th><a href="{{route('kelas.create')}}" class="btn btn-sm btn-info">Tambah</a></th>
                   </tr>
                   </tfoot>
                 </table>

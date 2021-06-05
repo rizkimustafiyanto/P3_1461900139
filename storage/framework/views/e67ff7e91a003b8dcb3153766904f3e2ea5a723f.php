@@ -13,7 +13,7 @@
           <img src=<?php echo e(asset("administrator/dist/img/user2-160x160.jpg")); ?> class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Rizki Mustafiyanto</a>
         </div>
       </div>
 
@@ -45,15 +45,15 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-table"></i>
               <p>
-                Forms
+                Lihat
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="guru.create" class="nav-link">
+                <a href="guru" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Guru</p>
                 </a>
@@ -80,33 +80,33 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-edit"></i>
               <p>
-                Tables
+                Buat Baru
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="guru" class="nav-link">
+                <a href="/guru/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Guru</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="siswa" class="nav-link">
+                <a href="/siswa/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Siswa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="kelas" class="nav-link">
+                <a href="/kelas/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kelas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="user" class="nav-link">
+                <a href="/user/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User</p>
                 </a>

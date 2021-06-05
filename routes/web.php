@@ -23,4 +23,4 @@ Route::get('/', function () {
 Route::resource('kelas', KelasController::class);
 Route::resource('guru', GuruController::class);
 Route::resource('siswa', SiswaController::class);
-Route::resource('user', UserguruController::class);
+Route::resource('user', UserController::class);

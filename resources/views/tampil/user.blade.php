@@ -51,17 +51,17 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
-                  <th>Alamat</th>
+                  <th>Username</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $no=1; ?>
-                  @foreach ($userguru as $sa)
+                  @foreach ($userguru as $ug)
                   <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$sa->nama}}</td>
-                    <td>{{$sa->username}}</td>
+                    <td>{{$ug->nama}}</td>
+                    <td>{{$ug->username}}</td>
                     <td>
                       <a href="#" class="btn btn-sm btn-info">Edit</a>
                       |
@@ -74,7 +74,7 @@
               <tr>
                   <th>No</th>
                   <th>Nama</th>
-                  <th>Alamat</th>
+                  <th>Username</th>
                   <th><a href="{{route('user.create')}}" class="btn btn-sm btn-info">Tambah</a></th>
               </tr>
               </tfoot>

@@ -27,7 +27,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create Kelas</li>
+              <li class="breadcrumb-item active">Edit kelas</li>
             </ol>
           </div>
         </div>
@@ -43,26 +43,26 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Data Kelas<small> Validation Input</small></h3>
+                <h3 class="card-title">Edit Data kelas<small> Validation Input</small></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="POST" action="<?php echo e(route('kelas.store')); ?>">
-                <?php echo e(csrf_field()); ?>
-
+              <form id="quickForm" method="POST" action="<?php echo e(route('kelas.update', $kelas->id)); ?>">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputnama1">Kode Siswa</label>
-                    <input type="text" name="id_siswa" class="form-control" id="exampleInputnama1" placeholder="Masukkan nama anda">
+                    <input type="Text" name="id_siswa" class="form-control" value="<?php echo e($kelas->id_siswa); ?>" placeholder="Masukkan nama anda">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputmengajar1">Kode Guru</label>
-                    <input type="Text" name="id_guru" class="form-control" id="exampleInputmengajar1" placeholder="Bagian Matakuliah">
+                    <input type="Text" name="id_guru" class="form-control" value="<?php echo e($kelas->id_guru); ?>" placeholder="Bagian Matakuliah">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">Setuju untuk menambah</label>
+                      <label class="custom-control-label" for="exampleCheck1">Setuju untuk mengubah</label>
                     </div>
                   </div>
                 </div>
@@ -133,7 +133,7 @@
     });
     $('#quickForm').validate({
       rules: {
-        nama: {
+        kelas: {
           required: true
         },
         mengajar: {
@@ -145,7 +145,7 @@
         },
       },
       messages: {
-        nama: {
+        kelas: {
           required: "Tolong masukkan nama"
         },
         mengajar: {
@@ -169,4 +169,4 @@
   });
   </script>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/form/newkelas.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/edita/editkelas.blade.php ENDPATH**/ ?>

@@ -37,12 +37,17 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'mengajar' => 'required',
+        ]);
+
         DB::table('guru')->insert([
             'nama' => $request->nama,
             'mengajar' => $request->mengajar
         ]);
-        // alihkan halaman ke halaman pegawai
-        return redirect('/pegawai');
+        // alihkan halaman ke halaman guru
+        return redirect()->route('guru.index')->with('Success','Data Guru Berhasil Ditambah');;
     }
 
     /**
@@ -51,42 +56,54 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Guru $guru)
     {
-        //
+        return view('edita.showguru',compact('guru'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $guru
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Guru $guru)
     {
-        return view('edita.editguru');
+        return view('edita.editguru', compact('guru'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $guru
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Guru $guru)
     {
-        //
+        $request->validate([
+            'nama' => 'required',   
+            'mengajar' => 'required',
+        ]);
+
+        $guru->update([
+            'nama' => $request->nama,
+            'mengajar' => $request->mengajar
+        ]);
+
+        // alihkan halaman ke halaman guru
+        return redirect()->route('guru.index')->with('Success','Data Guru Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $guru
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Guru $guru)
     {
-        //
+        $guru->delete();
+        return redirect()->route('guru.index')->with('Success','Data Guru Berhasil Dihapus');
     }
 }

@@ -15,7 +15,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = \App\Models\Siswa::All();
+        $data = Siswa::All();
         return view('tampil.siswat' , ['siswa' => $data]);
     }
 
@@ -37,16 +37,26 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        DB::table('siswa')->insert([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat
+        ]);
+        // alihkan halaman ke halaman guru
+        return redirect()->route('siswa.index')->with('Success','Data Siswa Berhasil Ditambah');;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Siswa $siswa)
     {
         //
     }
@@ -54,34 +64,46 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        //
+        return view('edita.editsiswa',compact('siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Siswa $siswa)
     {
-        //
+        $request->validate([
+            'nama' => 'required',   
+            'alamat' => 'required',
+        ]);
+
+        $guru->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat
+        ]);
+
+        // alihkan halaman ke halaman guru
+        return redirect()->route('siswa.index')->with('Success','Data Siswa Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Siswa $siswa)
     {
-        //
+        $guru->delete();
+        return redirect()->route('siswa.index')->with('Success','Data Siswa Berhasil Dihapus');
     }
 }

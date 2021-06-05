@@ -9,4 +9,7 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = "Siswa";
+    protected $fillable = [
+        'nama', 'alamat'
+    ];
 }

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php echo $__env->make('part/head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('part/head')
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
-    <?php echo $__env->make('part/proses/opening', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('part/proses/opening')
 
   <!-- Navbar -->
-    <?php echo $__env->make('part/navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('part/navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    <?php echo $__env->make('part/side', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('part/side')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -27,7 +27,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create Kelas</li>
+              <li class="breadcrumb-item active">Edit user</li>
             </ol>
           </div>
         </div>
@@ -43,26 +43,36 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Data Kelas<small> Validation Input</small></h3>
+                <h3 class="card-title">Edit Data user<small> Validation Input</small></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="POST" action="<?php echo e(route('kelas.store')); ?>">
-                <?php echo e(csrf_field()); ?>
-
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                  <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+              @endif
+              <form id="quickForm" method="POST" action="{{route('user.update',$user->id)}}">
+                @csrf
+                @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputnama1">Kode Siswa</label>
-                    <input type="text" name="id_siswa" class="form-control" id="exampleInputnama1" placeholder="Masukkan nama anda">
+                    <label for="exampleInputnama1">Nama</label>
+                    <input type="text" name="username" class="form-control" value="{{$user->username}}" placeholder="Masukkan nama anda" value="">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputmengajar1">Kode Guru</label>
-                    <input type="Text" name="id_guru" class="form-control" id="exampleInputmengajar1" placeholder="Bagian Matakuliah">
+                    <label for="exampleInputmengajar1">Mengajar</label>
+                    <input type="password" name="password" class="form-control" value="{{$user->password}}" placeholder="Bagian Matakuliah">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">Setuju untuk menambah</label>
+                      <label class="custom-control-label" for="exampleCheck1">Setuju untuk mengubah</label>
                     </div>
                   </div>
                 </div>
@@ -97,33 +107,33 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-    <?php echo $__env->make('part/foot', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('part/foot')
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src=<?php echo e(asset("administrator/plugins/jquery/jquery.min.js")); ?>></script>
+<script src={{asset("administrator/plugins/jquery/jquery.min.js")}}></script>
 <!-- Bootstrap -->
-<script src=<?php echo e(asset("administrator/plugins/bootstrap/js/bootstrap.bundle.min.js")); ?>></script>
+<script src={{asset("administrator/plugins/bootstrap/js/bootstrap.bundle.min.js")}}></script>
 <!-- overlayScrollbars -->
-<script src=<?php echo e(asset("administrator/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")); ?>></script>
+<script src={{asset("administrator/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
 <!-- AdminLTE App -->
-<script src=<?php echo e(asset("administrator/dist/js/adminlte.js")); ?>></script>
+<script src={{asset("administrator/dist/js/adminlte.js")}}></script>
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src=<?php echo e(asset("administrator/plugins/jquery-mousewheel/jquery.mousewheel.js")); ?>></script>
-<script src=<?php echo e(asset("administrator/plugins/raphael/raphael.min.js")); ?>></script>
-<script src=<?php echo e(asset("administrator/plugins/jquery-mapael/jquery.mapael.min.js")); ?>></script>
-<script src=<?php echo e(asset("administrator/plugins/jquery-mapael/maps/usa_states.min.js")); ?>></script>
+<script src={{asset("administrator/plugins/jquery-mousewheel/jquery.mousewheel.js")}}></script>
+<script src={{asset("administrator/plugins/raphael/raphael.min.js")}}></script>
+<script src={{asset("administrator/plugins/jquery-mapael/jquery.mapael.min.js")}}></script>
+<script src={{asset("administrator/plugins/jquery-mapael/maps/usa_states.min.js")}}></script>
 <!-- ChartJS -->
-<script src=<?php echo e(asset("administrator/plugins/chart.js/Chart.min.js")); ?>></script>
+<script src={{asset("administrator/plugins/chart.js/Chart.min.js")}}></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src=<?php echo e(asset("administrator/dist/js/demo.js")); ?>></script>
+<script src={{asset("administrator/dist/js/demo.js")}}></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src=<?php echo e(asset("administrator/dist/js/pages/dashboard2.js")); ?>></script>
+<script src={{asset("administrator/dist/js/pages/dashboard2.js")}}></script>
 <script>
   $(function () {
     $.validator.setDefaults({
@@ -169,4 +179,4 @@
   });
   </script>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\Praktikum\ketiga\resources\views/form/newkelas.blade.php ENDPATH**/ ?>
+</html>
